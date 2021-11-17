@@ -19,5 +19,5 @@ steps:
         curl -L https://files.pythonhosted.org/packages/source/m/mitogen/mitogen-<<parameters.version>>.tar.gz --output mitogen.tar.gz
         tar -xzf mitogen.tar.gz
         sudo mkdir -p <<parameters.install-path>>
-        sudo mv mitogen-<<parameters.version>> <<parameters.install-path>>
+        sudo mv mitogen-<<parameters.version>>/* <<parameters.install-path>>
         echo "Installed mitogen <<parameters.version>> into <<parameters.install-path>>"
