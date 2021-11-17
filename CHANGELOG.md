@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.1.2...1.2.0) (2021-11-17)
+
+
+### Features
+
+* Add check for already installed mitogen and ansible ([e5e9f24](https://github.com/trustedshops-public/circleci-orb-ansible/commit/e5e9f2414cb1e91f9570638ac8867f8e310c6c3a))
+
 ## [1.1.2](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.1.1...1.1.2) (2021-11-17)
 
 
