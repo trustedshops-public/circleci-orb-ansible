@@ -1,8 +1,6 @@
 description: >
   Provision playbook
 
-executor: <<parameters.executor>>
-
 parameters:
   executor:
     type: executor
@@ -92,25 +90,42 @@ parameters:
     default: ""
 
 steps:
-  - provision:
-      executor: <<parameters.executor>>
-      attach-workspace: <<parameters.attach-workspace>>
-      workspace-root: <<parameters.workspace-root>>
-      checkout: <<parameters.checkout>>
-      ansible-version: <<parameters.ansible-version>>
-      mitogen-version: <<parameters.mitogen-version>>
-      mitogen-install-path: <<parameters.mitogen-install-path>>
-      install-mitogen: <<parameters.install-mitogen>>
-      install-roles: <<parameters.install-roles>>
-      roles-requirements-file: <<parameters.roles-requirements-file>>
-      roles-rewrite-github-clone-url: <<parameters.roles-rewrite-github-clone-url>>
-      check-connectivity: <<parameters.check-connectivity>>
-      inventory: <<parameters.inventory>>
-      host-pattern: <<parameters.host-pattern>>
-      timeout: <<parameters.timeout>>
-      limit: <<parameters.limit>>
+  - when:
+      condition: <<parameters.checkout>>
+      steps:
+        - checkout
+  - when:
+      condition: <<parameters.attach-workspace>>
+      steps:
+        - attach_workspace:
+            at: <<parameters.workspace-root>>
+  - install-ansible:
+      version: <<parameters.ansible-version>>
+  - when:
+      condition: <<parameters.install-mitogen>>
+      steps:
+        - install-mitogen:
+            version: <<parameters.mitogen-version>>
+            install-path: <<parameters.mitogen-install-path>>
+  - when:
+      condition: <<parameters.install-roles>>
+      steps:
+        - install-roles:
+            requirements-file: <<parameters.roles-requirements-file>>
+            rewrite-github-clone-url: <<parameters.roles-rewrite-github-clone-url>>
+  - when:
+      condition: <<parameters.check-connectivity>>
+      steps:
+        - check-connectivity:
+            inventory: <<parameters.inventory>>
+            host-pattern: <<parameters.host-pattern>>
+            timeout: <<parameters.timeout>>
+            limit: <<parameters.limit>>
+  - run-playbook:
       playbook: <<parameters.playbook>>
+      inventory: <<parameters.inventory>>
       vault-password: <<parameters.vault-password>>
       vault-file: <<parameters.vault-file>>
       tags: <<parameters.tags>>
       skip-tags: <<parameters.skip-tags>>
+      limit: <<parameters.limit>>
