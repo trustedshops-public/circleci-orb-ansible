@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.1.0...1.1.1) (2021-11-17)
+
+
+### Bug Fixes
+
+* Fix role install ([32e44aa](https://github.com/trustedshops-public/circleci-orb-ansible/commit/32e44aae4bb65c3b03b6646417dcf89967e286cb))
+
 # [1.1.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.0.0...1.1.0) (2021-11-17)
 
 
