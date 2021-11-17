@@ -28,6 +28,7 @@ steps:
         then
           requirements_file="<<parameters.requirements-file>>"
         elif [ -f "<<parameters.requirements-file>>.yml" ]
+        then
           requirements_file="<<parameters.requirements-file>>.yml"
         elif [ -f "<<parameters.requirements-file>>.yaml" ]
         then
