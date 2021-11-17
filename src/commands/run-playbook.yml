@@ -1,0 +1,60 @@
+description: >
+  Run ansible playbook
+
+parameters:
+  playbook:
+    type: string
+    description: Path to playbook to execute
+  inventory:
+    type: string
+    description: Path to inventory file
+    default: ""
+  vault-password:
+    type: env_var_name
+    description: Environment variable to use for vault password
+    default: "__NO_VAULT_PASSWORD__"
+  vault-file:
+    type: string
+    description: Vault file to use for password
+    default: ""
+  tags:
+    type: string
+    description: Tags to execute
+    default: ""
+  skip-tags:
+    type: string
+    description: Tags to skip
+    default: ""
+  limit:
+    type: string
+    description: Limit for connectivity check
+    default: ""
+
+steps:
+  - unless:
+      condition:
+        and:
+          - equal: [ <<parameters.vault-password>>, "__NO_VAULT_PASSWORD__" ]
+      steps:
+        - run:
+            name: Create and setup vault password file
+            command: |
+              echo $<<parameters.vault-password>> > .vault-password
+              echo "export ANSIBLE_VAULT_PASSWORD_FILE='${PWD}/.vault-password'" >> $BASH_ENV
+  - unless:
+      condition:
+        and:
+          - equal: [ <<parameters.vault-file>>, "" ]
+      steps:
+        - run:
+            name: Setup ansible-vault file
+            command: |
+              echo "export ANSIBLE_VAULT_PASSWORD_FILE='<<parameters.vault-file>>'" >> $BASH_ENV
+  - run:
+      name: Execute ansible playbook <<parameters.playbook>>
+      command: |
+        ansible-playbook <<parameters.playbook>> \
+          `if [ ! -z "<<parameters.inventory>>" ]; then echo "--inventory <<parameters.inventory>>"; fi` \
+          `if [ ! -z "<<parameters.limit>>" ]; then echo "--limit <<parameters.inventory>>"; fi` \
+          `if [ ! -z "<<parameters.tags>>" ]; then echo "--tags <<parameters.tags>>"; fi` \
+          `if [ ! -z "<<parameters.skip-tags>>" ]; then echo "--skip-tags <<parameters.skip-tags>>"; fi`

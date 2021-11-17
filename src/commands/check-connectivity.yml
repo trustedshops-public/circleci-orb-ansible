@@ -1,0 +1,29 @@
+description: >
+  Check connectivity to hosts in inventory
+
+parameters:
+  inventory:
+    type: string
+    description: Path to inventory file
+    default: ""
+  host-pattern:
+    type: string
+    description: Host pattern to check
+    default: all
+  timeout:
+    type: integer
+    description: Timeout in seconds
+    default: 30
+  limit:
+    type: string
+    description: Limit for connectivity check
+    default: ""
+
+steps:
+  - run:
+      name: Check connectivity for <<parameters.host-pattern>>
+      command: |
+        ansible <<parameters.host-pattern>> \
+          -m ping \
+          `if [ ! -z "<<parameters.inventory>>" ]; then echo "-i <<parameters.inventory>>"; fi` \
+          `if [ ! -z "<<parameters.limit>>" ]; then echo "--limit <<parameters.limit>>"; fi`

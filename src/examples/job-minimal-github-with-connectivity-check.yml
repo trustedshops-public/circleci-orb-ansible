@@ -1,0 +1,23 @@
+description: Help users getting started with the orb
+usage:
+  version: 2.1
+  orbs:
+    ansible: trustedshops-public/ansible@<version>
+  workflows:
+    version: 2
+    continious:
+      jobs:
+        - ansible/provision:
+            playbook: web.yml
+            inventory: inventory/prod.ini
+            check-connectivity: true
+            limit: webservers
+            skip-tags: no-cd
+            vault-password: VAULT_PASSWORD_PROD
+            roles-rewrite-github-clone-url: true
+            ansible-version: 2.9.15
+            mitogen-version: 0.2.9
+            name: deploy-prod
+            filters:
+              branches:
+                only: [ main ]

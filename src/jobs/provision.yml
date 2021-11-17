@@ -1,0 +1,133 @@
+description: >
+  Provision playbook
+
+executor: <<parameters.executor>>
+
+parameters:
+  executor:
+    type: executor
+    default: default
+    description: Executor to use
+  attach-workspace:
+    default: true
+    description: >
+      Boolean for whether or not to attach to an existing workspace.
+    type: boolean
+  workspace-root:
+    default: .
+    description: >
+      Workspace root path that is either an absolute path or a path relative to the working directory.
+    type: string
+  checkout:
+    default: true
+    description: >
+      Boolean for whether or not to checkout sources
+    type: boolean
+  ansible-version:
+    type: string
+    description: Version of ansible to install
+    default: "2.9.*"
+  mitogen-version:
+    type: string
+    default: "0.2.9"
+    description: Verion to install
+  mitogen-install-path:
+    type: string
+    description: Path to install mitogen into
+    default: /opt/ansible/mitogen
+  install-mitogen:
+    type: boolean
+    default: true
+    description: Install mitogen strategy
+  install-roles:
+    type: boolean
+    default: true
+    description: Install roles using ansible-galaxy
+  roles-requirements-file:
+    type: string
+    description: Path to requirements file (with or without .y[a]ml)
+    default: requirements
+  roles-rewrite-github-clone-url:
+    type: boolean
+    default: false
+    description: Rewrite git urls for github to use https with env var GITHUB_TOKEN
+  check-connectivity:
+    type: boolean
+    default: false
+    description: Check connectivity before executing playbook
+  inventory:
+    type: string
+    description: Path to inventory file
+    default: ""
+  host-pattern:
+    type: string
+    description: Host pattern to check
+    default: all
+  timeout:
+    type: integer
+    description: Timeout in seconds
+    default: 30
+  limit:
+    type: string
+    description: Limit for ansible execution
+    default: ""
+  playbook:
+    type: string
+    description: Path to playbook to execute
+  vault-password:
+    type: env_var_name
+    description: Environment variable to use for vault password
+    default: "__NO_VAULT_PASSWORD__"
+  vault-file:
+    type: string
+    description: Vault file to use for password
+    default: ""
+  tags:
+    type: string
+    description: Tags to execute
+    default: ""
+  skip-tags:
+    type: string
+    description: Tags to skip
+    default: ""
+
+steps:
+  - when:
+      condition: <<parameters.checkout>>
+      steps:
+        - checkout
+  - when:
+      condition: <<parameters.attach-workspace>>
+      steps:
+        - attach_workspace:
+            at: <<parameters.workspace-root>>
+  - install-ansible:
+      version: <<parameters.ansible-version>>
+  - when:
+      condition: <<parameters.install-mitogen>>
+      steps:
+        - install-mitogen:
+            version: <<parameters.mitogen-version>>
+            install-path: <<parameters.mitogen-install-path>>
+  - when:
+      condition: <<parameters.install-roles>>
+      steps:
+        - install-roles:
+            requirements-file: <<parameters.roles-requirements-file>>
+            rewrite-github-clone-url: <<parameters.roles-rewrite-github-clone-url>>
+  - when:
+      condition: <<parameters.check-connectivity>>
+      steps:
+        - check-connectivity:
+            inventory: <<parameters.inventory>>
+            host-pattern: <<parameters.host-pattern>>
+            timeout: <<parameters.timeout>>
+            limit: <<parameters.limit>>
+  - run-playbook:
+      playbook: <<parameters.playbook>>
+      inventory: <<parameters.inventory>>
+      vault-password: <<parameters.vault-password>>
+      vault-file: <<parameters.vault-file>>
+      tags: <<parameters.tags>>
+      skip-tags: <<parameters.skip-tags>>
+      limit: <<parameters.limit>>

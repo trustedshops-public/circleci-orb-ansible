@@ -1,0 +1,7 @@
+version: 2.1
+
+description: |
+  Execute common ansible functionality
+display:
+  home_url: "https://github.com/trustedshops-public/circleci-orb-ansible"
+  source_url: "https://github.com/trustedshops-public/circleci-orb-ansible"

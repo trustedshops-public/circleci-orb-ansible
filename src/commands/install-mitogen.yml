@@ -1,0 +1,23 @@
+description: >
+  Install mitogen using curl
+parameters:
+  version:
+    type: string
+    default: 0.2.9
+    description: Verion to install
+  install-path:
+    type: string
+    description: Path to install mitogen into
+    default: /opt/ansible/mitogen
+steps:
+  - run:
+      name: Install mitogen <<parameters.version>>
+      command: |
+        mkdir /tmp/mitogen || true
+        cd /tmp/mitogen
+
+        curl -L https://files.pythonhosted.org/packages/source/m/mitogen/mitogen-<<parameters.version>>.tar.gz --output mitogen.tar.gz
+        tar -xzf mitogen.tar.gz
+        sudo mkdir -p <<parameters.install-path>>
+        sudo mv mitogen-<<parameters.version>> <<parameters.install-path>>
+        echo "Installed mitogen <<parameters.version>> into <<parameters.install-path>>"
