@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.1.1...1.1.2) (2021-11-17)
+
+
+### Bug Fixes
+
+* Fix install move for mitogen ([b491679](https://github.com/trustedshops-public/circleci-orb-ansible/commit/b491679ac3e0a4505daed204c414dfad02bcf0e6))
+
 ## [1.1.1](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.1.0...1.1.1) (2021-11-17)
 
 
