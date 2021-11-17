@@ -13,11 +13,16 @@ steps:
   - run:
       name: Install mitogen <<parameters.version>>
       command: |
-        mkdir /tmp/mitogen || true
-        cd /tmp/mitogen
+        if [ -d "<<parameters.install-path>>" ]
+        then
+          echo "Mitogen is already installed, skipping install."
+        else
+          mkdir /tmp/mitogen || true
+          cd /tmp/mitogen
 
-        curl -L https://files.pythonhosted.org/packages/source/m/mitogen/mitogen-<<parameters.version>>.tar.gz --output mitogen.tar.gz
-        tar -xzf mitogen.tar.gz
-        sudo mkdir -p <<parameters.install-path>>
-        sudo mv mitogen-<<parameters.version>>/* <<parameters.install-path>>
-        echo "Installed mitogen <<parameters.version>> into <<parameters.install-path>>"
+          curl -L https://files.pythonhosted.org/packages/source/m/mitogen/mitogen-<<parameters.version>>.tar.gz --output mitogen.tar.gz
+          tar -xzf mitogen.tar.gz
+          sudo mkdir -p <<parameters.install-path>>
+          sudo mv mitogen-<<parameters.version>>/* <<parameters.install-path>>
+          echo "Installed mitogen <<parameters.version>> into <<parameters.install-path>>"
+        fi

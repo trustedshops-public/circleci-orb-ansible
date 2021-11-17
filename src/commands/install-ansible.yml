@@ -11,4 +11,9 @@ steps:
   - run:
       name: Install ansible <<parameters.version>>
       command: |
-        pip3 install 'ansible==<<parameters.version>>'
+        if command -v ansible &> /dev/null
+        then
+          echo "Ansible is already installed, skipping install."
+        else
+          pip3 install 'ansible==<<parameters.version>>'
+        fi
