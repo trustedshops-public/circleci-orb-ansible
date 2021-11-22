@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.3.0...1.3.1) (2021-11-22)
+
+
+### Bug Fixes
+
+* Fix limit parameter ([5fc5a4d](https://github.com/trustedshops-public/circleci-orb-ansible/commit/5fc5a4de69dfa77535ffca4c3b18c5b74703e015))
+
 # [1.3.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.2.0...1.3.0) (2021-11-22)
 
 
