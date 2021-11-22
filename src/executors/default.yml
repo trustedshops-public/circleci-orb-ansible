@@ -4,6 +4,10 @@ description: >
 docker:
   - image: 'cimg/python:<<parameters.tag>>'
 
+environment:
+  ANSIBLE_FORCE_COLOR: "true"
+  ANSIBLE_PIPELINING: "true"
+
 parameters:
   tag:
     default: "3.10"
