@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.2.0...1.3.0) (2021-11-22)
+
+
+### Features
+
+* Add env vars for default executor ([#1](https://github.com/trustedshops-public/circleci-orb-ansible/issues/1)) ([e5cbe11](https://github.com/trustedshops-public/circleci-orb-ansible/commit/e5cbe1198da3292464e3749c1f29582900e08577))
+
 # [1.2.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.1.2...1.2.0) (2021-11-17)
 
 
