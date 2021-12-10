@@ -1,3 +1,12 @@
+# [1.4.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.3.1...1.4.0) (2021-12-10)
+
+
+### Features
+
+* **#2:** Add diff and check parameter to provision job ([c77afb9](https://github.com/trustedshops-public/circleci-orb-ansible/commit/c77afb98d0bc8986b1c4996b069e2e08882a64e5)), closes [#2](https://github.com/trustedshops-public/circleci-orb-ansible/issues/2)
+* **#2:** Add support for check parameter ([37d88bf](https://github.com/trustedshops-public/circleci-orb-ansible/commit/37d88bf3fdd811ca736f48623e96c6534019248d)), closes [#2](https://github.com/trustedshops-public/circleci-orb-ansible/issues/2)
+* **#2:** Add support for diff parameter ([0321293](https://github.com/trustedshops-public/circleci-orb-ansible/commit/0321293f5976dbd0ff44e389ba6feb4e30dafef1)), closes [#2](https://github.com/trustedshops-public/circleci-orb-ansible/issues/2)
+
 ## [1.3.1](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.3.0...1.3.1) (2021-11-22)
 
 
