@@ -92,6 +92,10 @@ parameters:
     type: boolean
     description: Don't make any changes. Try to predict some of the changes that may occur
     default: false
+  diff:
+    type: boolean
+    description: When changing (small) files and templates, show the differences in those files
+    default: false
 
 steps:
   - when:
@@ -134,3 +138,4 @@ steps:
       skip-tags: <<parameters.skip-tags>>
       limit: <<parameters.limit>>
       check: <<parameters.check>>
+      diff: <<parameters.diff>>
