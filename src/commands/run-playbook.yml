@@ -29,6 +29,10 @@ parameters:
     type: string
     description: Limit for connectivity check
     default: ""
+  check:
+    type: boolean
+    description: Don't make any changes. Try to predict some of the changes that may occur
+    default: false
 
 steps:
   - unless:
@@ -57,4 +61,5 @@ steps:
           `if [ ! -z "<<parameters.inventory>>" ]; then echo "--inventory <<parameters.inventory>>"; fi` \
           `if [ ! -z "<<parameters.limit>>" ]; then echo "--limit <<parameters.limit>>"; fi` \
           `if [ ! -z "<<parameters.tags>>" ]; then echo "--tags <<parameters.tags>>"; fi` \
-          `if [ ! -z "<<parameters.skip-tags>>" ]; then echo "--skip-tags <<parameters.skip-tags>>"; fi`
+          `if [ ! -z "<<parameters.skip-tags>>" ]; then echo "--skip-tags <<parameters.skip-tags>>"; fi` \
+          `if [ "<<parameters.check>>" = 1 ]; then echo "--check"; fi`

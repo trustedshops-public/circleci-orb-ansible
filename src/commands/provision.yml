@@ -88,6 +88,10 @@ parameters:
     type: string
     description: Tags to skip
     default: ""
+  check:
+    type: boolean
+    description: Don't make any changes. Try to predict some of the changes that may occur
+    default: false
 
 steps:
   - when:
@@ -129,3 +133,4 @@ steps:
       tags: <<parameters.tags>>
       skip-tags: <<parameters.skip-tags>>
       limit: <<parameters.limit>>
+      check: <<parameters.check>>
