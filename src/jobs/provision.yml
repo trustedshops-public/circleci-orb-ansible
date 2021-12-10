@@ -90,6 +90,14 @@ parameters:
     type: string
     description: Tags to skip
     default: ""
+  check:
+    type: boolean
+    description: Don't make any changes. Try to predict some of the changes that may occur
+    default: false
+  diff:
+    type: boolean
+    description: When changing (small) files and templates, show the differences in those files
+    default: false
 
 steps:
   - provision:
@@ -114,3 +122,5 @@ steps:
       vault-file: <<parameters.vault-file>>
       tags: <<parameters.tags>>
       skip-tags: <<parameters.skip-tags>>
+      check: <<parameters.check>>
+      diff: <<parameters.diff>>
