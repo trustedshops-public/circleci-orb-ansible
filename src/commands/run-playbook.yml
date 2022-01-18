@@ -37,6 +37,10 @@ parameters:
     type: boolean
     description: When changing (small) files and templates, show the differences in those files
     default: false
+  no-output-timeout:
+    type: string
+    description: Timeout after which CircleCI cancels the playbook execution
+    default: 15m
 
 steps:
   - unless:
@@ -68,3 +72,4 @@ steps:
           `if [ ! -z "<<parameters.skip-tags>>" ]; then echo "--skip-tags <<parameters.skip-tags>>"; fi` \
           `if [ "<<parameters.check>>" = 1 ]; then echo "--check"; fi` \
           `if [ "<<parameters.diff>>" = 1 ]; then echo "--diff"; fi`
+      no_output_timeout: <<parameters.no-output-timeout>>
