@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.4.0...2.0.0) (2022-01-18)
+
+
+### Features
+
+* **#4:** Add no_output_timeout to run-playbook ([#5](https://github.com/trustedshops-public/circleci-orb-ansible/issues/5)) ([2fe228e](https://github.com/trustedshops-public/circleci-orb-ansible/commit/2fe228e524929ce3e7d9779e1d22f6b47d324e70)), closes [#4](https://github.com/trustedshops-public/circleci-orb-ansible/issues/4)
+
+
+### BREAKING CHANGES
+
+* **#4:** Default timeout for provision set to 15 minutes instead of 10min as used by CircleCI
+
 # [1.4.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.3.1...1.4.0) (2021-12-10)
 
 
