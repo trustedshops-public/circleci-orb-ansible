@@ -1,3 +1,5 @@
+# [3.0.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/2.0.0...3.0.0) (2023-05-26)
+
 # [2.0.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.4.0...2.0.0) (2022-01-18)
 
 
