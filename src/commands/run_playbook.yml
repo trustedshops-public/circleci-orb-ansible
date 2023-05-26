@@ -56,7 +56,7 @@ steps:
   - unless:
       condition:
         and:
-          - equal: [ <<parameters.vault-file>>, "" ]
+          - equal: [ <<parameters.vault_file>>, "" ]
       steps:
         - run:
             name: Setup ansible-vault file
