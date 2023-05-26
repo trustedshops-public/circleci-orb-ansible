@@ -10,13 +10,13 @@ usage:
         - ansible/provision:
             playbook: web.yml
             inventory: inventory/prod.ini
-            check-connectivity: true
+            check_connectivity: true
             limit: webservers
             skip-tags: no-cd
-            vault-password: VAULT_PASSWORD_PROD
-            roles-rewrite-github-clone-url: true
-            ansible-version: 2.9.15
-            mitogen-version: 0.2.9
+            vault_password: VAULT_PASSWORD_PROD
+            roles_rewrite_github_clone_url: true
+            ansible_version: 2.9.15
+            mitogen_version: 0.2.9
             name: deploy-prod
             filters:
               branches:

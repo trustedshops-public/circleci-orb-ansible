@@ -10,7 +10,7 @@ environment:
 
 parameters:
   tag:
-    default: "3.10"
+    default: "3.11"
     description: >
       Pick a specific circleci/base image variant:
       https://hub.docker.com/r/cimg/python/tags

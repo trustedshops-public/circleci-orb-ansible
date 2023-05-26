@@ -6,7 +6,7 @@ parameters:
     type: string
     description: Path to inventory file
     default: ""
-  host-pattern:
+  host_pattern:
     type: string
     description: Host pattern to check
     default: all
@@ -21,9 +21,9 @@ parameters:
 
 steps:
   - run:
-      name: Check connectivity for <<parameters.host-pattern>>
+      name: Check connectivity for <<parameters.host_pattern>>
       command: |
-        ansible <<parameters.host-pattern>> \
+        ansible <<parameters.host_pattern>> \
           -m ping \
           `if [ ! -z "<<parameters.inventory>>" ]; then echo "-i <<parameters.inventory>>"; fi` \
           `if [ ! -z "<<parameters.limit>>" ]; then echo "--limit <<parameters.limit>>"; fi`

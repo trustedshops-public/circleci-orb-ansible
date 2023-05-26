@@ -9,11 +9,11 @@ parameters:
     type: string
     description: Path to inventory file
     default: ""
-  vault-password:
+  vault_password:
     type: env_var_name
     description: Environment variable to use for vault password
     default: "__NO_VAULT_PASSWORD__"
-  vault-file:
+  vault_file:
     type: string
     description: Vault file to use for password
     default: ""
@@ -21,7 +21,7 @@ parameters:
     type: string
     description: Tags to execute
     default: ""
-  skip-tags:
+  skip_tags:
     type: string
     description: Tags to skip
     default: ""
@@ -37,7 +37,7 @@ parameters:
     type: boolean
     description: When changing (small) files and templates, show the differences in those files
     default: false
-  no-output-timeout:
+  no_output_timeout:
     type: string
     description: Timeout after which CircleCI cancels the playbook execution
     default: 15m
@@ -46,22 +46,22 @@ steps:
   - unless:
       condition:
         and:
-          - equal: [ <<parameters.vault-password>>, "__NO_VAULT_PASSWORD__" ]
+          - equal: [ <<parameters.vault_password>>, "__NO_VAULT_PASSWORD__" ]
       steps:
         - run:
             name: Create and setup vault password file
             command: |
-              echo $<<parameters.vault-password>> > .vault-password
+              echo $<<parameters.vault_password>> > .vault-password
               echo "export ANSIBLE_VAULT_PASSWORD_FILE='${PWD}/.vault-password'" >> $BASH_ENV
   - unless:
       condition:
         and:
-          - equal: [ <<parameters.vault-file>>, "" ]
+          - equal: [ <<parameters.vault_file>>, "" ]
       steps:
         - run:
             name: Setup ansible-vault file
             command: |
-              echo "export ANSIBLE_VAULT_PASSWORD_FILE='<<parameters.vault-file>>'" >> $BASH_ENV
+              echo "export ANSIBLE_VAULT_PASSWORD_FILE='<<parameters.vault_file>>'" >> $BASH_ENV
   - run:
       name: Execute ansible playbook <<parameters.playbook>>
       command: |
@@ -69,7 +69,7 @@ steps:
           `if [ ! -z "<<parameters.inventory>>" ]; then echo "--inventory <<parameters.inventory>>"; fi` \
           `if [ ! -z "<<parameters.limit>>" ]; then echo "--limit <<parameters.limit>>"; fi` \
           `if [ ! -z "<<parameters.tags>>" ]; then echo "--tags <<parameters.tags>>"; fi` \
-          `if [ ! -z "<<parameters.skip-tags>>" ]; then echo "--skip-tags <<parameters.skip-tags>>"; fi` \
+          `if [ ! -z "<<parameters.skip_tags>>" ]; then echo "--skip-tags <<parameters.skip_tags>>"; fi` \
           `if [ "<<parameters.check>>" = 1 ]; then echo "--check"; fi` \
           `if [ "<<parameters.diff>>" = 1 ]; then echo "--diff"; fi`
-      no_output_timeout: <<parameters.no-output-timeout>>
+      no_output_timeout: <<parameters.no_output_timeout>>

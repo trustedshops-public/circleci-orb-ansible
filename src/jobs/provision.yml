@@ -8,12 +8,12 @@ parameters:
     type: executor
     default: default
     description: Executor to use
-  attach-workspace:
+  attach_workspace:
     default: true
     description: >
       Boolean for whether or not to attach to an existing workspace.
     type: boolean
-  workspace-root:
+  workspace_root:
     default: .
     description: >
       Workspace root path that is either an absolute path or a path relative to the working directory.
@@ -23,35 +23,35 @@ parameters:
     description: >
       Boolean for whether or not to checkout sources
     type: boolean
-  ansible-version:
+  ansible_version:
     type: string
     description: Version of ansible to install
     default: "2.9.*"
-  mitogen-version:
+  mitogen_version:
     type: string
     default: "0.2.9"
     description: Verion to install
-  mitogen-install-path:
+  mitogen_install_path:
     type: string
     description: Path to install mitogen into
     default: /opt/ansible/mitogen
-  install-mitogen:
+  install_mitogen:
     type: boolean
     default: true
     description: Install mitogen strategy
-  install-roles:
+  install_roles:
     type: boolean
     default: true
     description: Install roles using ansible-galaxy
-  roles-requirements-file:
+  roles_requirements_file:
     type: string
     description: Path to requirements file (with or without .y[a]ml)
     default: requirements
-  roles-rewrite-github-clone-url:
+  roles_rewrite_github_clone_url:
     type: boolean
     default: false
     description: Rewrite git urls for github to use https with env var GITHUB_TOKEN
-  check-connectivity:
+  check_connectivity:
     type: boolean
     default: false
     description: Check connectivity before executing playbook
@@ -59,7 +59,7 @@ parameters:
     type: string
     description: Path to inventory file
     default: ""
-  host-pattern:
+  host_pattern:
     type: string
     description: Host pattern to check
     default: all
@@ -74,11 +74,11 @@ parameters:
   playbook:
     type: string
     description: Path to playbook to execute
-  vault-password:
+  vault_password:
     type: env_var_name
     description: Environment variable to use for vault password
     default: "__NO_VAULT_PASSWORD__"
-  vault-file:
+  vault_file:
     type: string
     description: Vault file to use for password
     default: ""
@@ -86,7 +86,7 @@ parameters:
     type: string
     description: Tags to execute
     default: ""
-  skip-tags:
+  skip_tags:
     type: string
     description: Tags to skip
     default: ""
@@ -98,7 +98,7 @@ parameters:
     type: boolean
     description: When changing (small) files and templates, show the differences in those files
     default: false
-  no-output-timeout:
+  no_output_timeout:
     type: string
     description: Timeout after which CircleCI cancels the playbook execution
     default: 15m
@@ -106,26 +106,26 @@ parameters:
 steps:
   - provision:
       executor: <<parameters.executor>>
-      attach-workspace: <<parameters.attach-workspace>>
-      workspace-root: <<parameters.workspace-root>>
+      attach_workspace: <<parameters.attach_workspace>>
+      workspace_root: <<parameters.workspace_root>>
       checkout: <<parameters.checkout>>
-      ansible-version: <<parameters.ansible-version>>
-      mitogen-version: <<parameters.mitogen-version>>
-      mitogen-install-path: <<parameters.mitogen-install-path>>
-      install-mitogen: <<parameters.install-mitogen>>
-      install-roles: <<parameters.install-roles>>
-      roles-requirements-file: <<parameters.roles-requirements-file>>
-      roles-rewrite-github-clone-url: <<parameters.roles-rewrite-github-clone-url>>
-      check-connectivity: <<parameters.check-connectivity>>
+      ansible_version: <<parameters.ansible_version>>
+      mitogen_version: <<parameters.mitogen_version>>
+      mitogen_install_path: <<parameters.mitogen_install_path>>
+      install_mitogen: <<parameters.install_mitogen>>
+      install_roles: <<parameters.install_roles>>
+      roles_requirements_file: <<parameters.roles_requirements_file>>
+      roles_rewrite_github_clone_url: <<parameters.roles_rewrite_github_clone_url>>
+      check_connectivity: <<parameters.check_connectivity>>
       inventory: <<parameters.inventory>>
-      host-pattern: <<parameters.host-pattern>>
+      host_pattern: <<parameters.host_pattern>>
       timeout: <<parameters.timeout>>
       limit: <<parameters.limit>>
       playbook: <<parameters.playbook>>
-      vault-password: <<parameters.vault-password>>
-      vault-file: <<parameters.vault-file>>
+      vault_password: <<parameters.vault_password>>
+      vault_file: <<parameters.vault_file>>
       tags: <<parameters.tags>>
-      skip-tags: <<parameters.skip-tags>>
+      skip_tags: <<parameters.skip_tags>>
       check: <<parameters.check>>
       diff: <<parameters.diff>>
-      no-output-timeout: <<parameters.no-output-timeout>>
+      no_output_timeout: <<parameters.no_output_timeout>>
