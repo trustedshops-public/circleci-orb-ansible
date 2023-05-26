@@ -2,18 +2,18 @@ description: >
   Install roles using ansible-galaxy
 
 parameters:
-  requirements-file:
+  requirements_file:
     type: string
     description: Path to requirements file (with or without .y[a]ml)
     default: requirements
-  rewrite-github-clone-url:
+  rewrite_github_clone_url:
     type: boolean
     default: false
     description: Rewrite git urls for github to use https with env var GITHUB_TOKEN
 
 steps:
   - when:
-      condition: <<parameters.rewrite-github-clone-url>>
+      condition: <<parameters.rewrite_github_clone_url>>
       steps:
         - run:
             name: Set github token in github urls for role install
@@ -24,15 +24,15 @@ steps:
       name: Install roles using ansible-galaxy
       command: |
         requirements_file=""
-        if [ -f "<<parameters.requirements-file>>" ]
+        if [ -f "<<parameters.requirements_file>>" ]
         then
-          requirements_file="<<parameters.requirements-file>>"
-        elif [ -f "<<parameters.requirements-file>>.yml" ]
+          requirements_file="<<parameters.requirements_file>>"
+        elif [ -f "<<parameters.requirements_file>>.yml" ]
         then
           requirements_file="<<parameters.requirements-file>>.yml"
-        elif [ -f "<<parameters.requirements-file>>.yaml" ]
+        elif [ -f "<<parameters.requirements_file>>.yaml" ]
         then
-          requirements_file="<<parameters.requirements-file>>.yaml"
+          requirements_file="<<parameters.requirements_file>>.yaml"
         else
           echo "ERROR: Requirements file not found."
           exit 2
