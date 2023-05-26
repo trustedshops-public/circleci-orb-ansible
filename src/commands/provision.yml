@@ -111,29 +111,29 @@ steps:
       steps:
         - attach_workspace:
             at: <<parameters.workspace_root>>
-  - install-ansible:
+  - install_ansible:
       version: <<parameters.ansible_version>>
   - when:
       condition: <<parameters.install_mitogen>>
       steps:
-        - install-mitogen:
+        - install_mitogen:
             version: <<parameters.mitogen_version>>
             install_path: <<parameters.mitogen_install_path>>
   - when:
       condition: <<parameters.install_roles>>
       steps:
-        - install-roles:
+        - install_roles:
             requirements_file: <<parameters.roles_requirements_file>>
             rewrite_github_clone_url: <<parameters.roles_rewrite_github_clone_url>>
   - when:
       condition: <<parameters.check_connectivity>>
       steps:
-        - check-connectivity:
+        - check_connectivity:
             inventory: <<parameters.inventory>>
             host_pattern: <<parameters.host_pattern>>
             timeout: <<parameters.timeout>>
             limit: <<parameters.limit>>
-  - run-playbook:
+  - run_playbook:
       playbook: <<parameters.playbook>>
       inventory: <<parameters.inventory>>
       vault_password: <<parameters.vault_password>>
