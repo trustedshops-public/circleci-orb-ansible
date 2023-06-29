@@ -1,5 +1,6 @@
 version: 2.1
-
+orbs:
+  github-utils: trustedshops-public/github-utils@1.0.0
 description: |
   Execute common ansible functionality
 display:
