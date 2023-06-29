@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/trustedshops-public/circleci-orb-ansible/compare/3.0.0...3.0.1) (2023-06-29)
+
+
+### Bug Fixes
+
+* Add token as username to github access token ([b8e7c0b](https://github.com/trustedshops-public/circleci-orb-ansible/commit/b8e7c0be56239861ab1dc7c49678f057c5897b56))
+
 # [3.0.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/2.0.0...3.0.0) (2023-05-26)
 
 # [2.0.0](https://github.com/trustedshops-public/circleci-orb-ansible/compare/1.4.0...2.0.0) (2022-01-18)
