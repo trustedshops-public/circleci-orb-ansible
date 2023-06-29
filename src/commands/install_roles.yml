@@ -18,8 +18,8 @@ steps:
         - run:
             name: Set github token in github urls for role install
             command: |
-              git config --global url.https://${GITHUB_TOKEN}@github.com/.insteadOf https://github.com/
-              git config --global url.https://${GITHUB_TOKEN}@github.com/.insteadOf ssh://git@github.com/
+              git config --global url.https://token:${GITHUB_TOKEN}@github.com/.insteadOf https://github.com/
+              git config --global url.https://token:${GITHUB_TOKEN}@github.com/.insteadOf ssh://git@github.com/
   - run:
       name: Install roles using ansible-galaxy
       command: |
