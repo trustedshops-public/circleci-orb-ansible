@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/trustedshops-public/circleci-orb-ansible/compare/3.0.1...3.0.2) (2023-06-29)
+
+
+### Bug Fixes
+
+* Use github-utils orb for rewriting git clone url ([97e37e3](https://github.com/trustedshops-public/circleci-orb-ansible/commit/97e37e34ae81a989312dc546ab934d2b65009c09))
+
 ## [3.0.1](https://github.com/trustedshops-public/circleci-orb-ansible/compare/3.0.0...3.0.1) (2023-06-29)
 
 
