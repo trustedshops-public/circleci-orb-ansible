@@ -3,12 +3,12 @@ description: >
 parameters:
   version:
     type: string
-    default: 0.2.9
+    default: 0.3.8
     description: Verion to install
   install_path:
     type: string
     description: Path to install mitogen into
-    default: /opt/ansible/mitogen
+    default: /opt/mitogen
 steps:
   - run:
       name: Install mitogen <<parameters.version>>
@@ -17,12 +17,5 @@ steps:
         then
           echo "Mitogen is already installed, skipping install."
         else
-          mkdir /tmp/mitogen || true
-          cd /tmp/mitogen
-
-          curl -L https://files.pythonhosted.org/packages/source/m/mitogen/mitogen-<<parameters.version>>.tar.gz --output mitogen.tar.gz
-          tar -xzf mitogen.tar.gz
-          sudo mkdir -p <<parameters.install_path>>
-          sudo mv mitogen-<<parameters.version>>/* <<parameters.install_path>>
-          echo "Installed mitogen <<parameters.version>> into <<parameters.install_path>>"
+          pip install mitogen==<<parameters.version>> --target "<<parameters.install_path>>-<<parameters.version>>"
         fi

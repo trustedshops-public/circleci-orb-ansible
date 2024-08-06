@@ -1,11 +1,11 @@
 description: >
-  Install ansible using pip3
+  Install ansible using pip
 
 parameters:
   version:
     type: string
     description: Version of ansible to install
-    default: "2.9.*"
+    default: "2.10.*"
 
 steps:
   - run:
@@ -15,5 +15,5 @@ steps:
         then
           echo "Ansible is already installed, skipping install."
         else
-          pip3 install 'ansible==<<parameters.version>>'
+          pip install 'ansible==<<parameters.version>>'
         fi
